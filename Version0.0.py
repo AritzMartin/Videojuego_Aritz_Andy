@@ -7,9 +7,9 @@ ventana = pygame. display.set_mode((640, 480))
 pygame.display.set_caption('Ejemplo 1')
 
 # Crea el objeto pelota y la redimensiono
-ball = pygame.image.load("Bola.png")
-ancho = 20
-alto = 20
+ball = pygame.image.load("SOL.png")
+ancho = 40
+alto = 40
 imag_redimensionada = pygame.transform.scale(ball, (ancho, alto))
 # Obtengo el rectángulo del objeto anterior
 ballrect = imag_redimensionada.get_rect()
@@ -19,7 +19,7 @@ speed = [5,5]
 ballrect.move_ip(0,0)
 
 # Crea el objeto bate, y obtengo su rectángulo
-barra = pygame.image.load("Barra_2.png")
+barra = pygame.image.load("LASER.png")
 barrarect = barra.get_rect()
 # Pongo el bate en la parte inferior de la pantalla
 barrarect.move_ip(240, 450)
@@ -54,7 +54,7 @@ while jugando:
 
     # Se pinta la ventana con un color
     # Esto borra los posibles elementos que teníamos anteriormente
-    ventana.fill((100, 235, 180))
+    ventana.fill((0, 0, 0))
 
     # Dibujo la pelota
     ventana.blit(imag_redimensionada, ballrect)
