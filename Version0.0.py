@@ -6,6 +6,11 @@ pygame.init()
 ventana = pygame. display.set_mode((640, 480))
 pygame.display.set_caption('Ejemplo 1')
 
+#Icono
+pygame.display.set_caption("Icono")
+icono = pygame.image.load("Icono.png")
+pygame.display.set_icon(icono)
+
 # Crea el objeto pelota y la redimensiono
 ball = pygame.image.load("SOL.png")
 ancho = 40
