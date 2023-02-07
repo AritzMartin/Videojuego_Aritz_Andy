@@ -5,16 +5,14 @@ pygame.init()
 # Inicialización de la superficie de dibujo
 W,H = 640, 480
 ventana = pygame. display.set_mode((W, H))
-pygame.display.set_caption('Ejemplo 1')
 FPS = 60
 reloj = pygame.time.Clock()
 #Fondo del juego
 fondo = pygame.image.load("Fondo.png").convert()
 y = 0
 
-
-#Icono
-pygame.display.set_caption("Icono")
+#Icono y Título
+pygame.display.set_caption("Aritz & Andy's GAME")
 icono = pygame.image.load("Icono.png")
 pygame.display.set_icon(icono)
 
@@ -26,7 +24,8 @@ imag_redimensionada = pygame.transform.scale(ball, (ancho, alto))
 # Obtengo el rectángulo del objeto anterior
 ballrect = imag_redimensionada.get_rect()
 # Inicializo los valores con los que se van a mover la pelota
-speed = [5,5]
+speed = [1, -1]  
+ball_speed = 5
 # Pongo la pelota en el origen de coordenadas
 ballrect.move_ip(0,0)
 
@@ -55,17 +54,19 @@ while jugando:
     # Compruebo si se ha pulsado alguna tecla y le marco los bordes de la pantalla:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT] and barrarect.left > 0:
-        barrarect = barrarect.move(-5, 0)
+        barrarect = barrarect.move(-10, 0)
     if keys[pygame.K_RIGHT] and barrarect.right < ventana.get_width():
-        barrarect = barrarect.move(5, 0)
+        barrarect = barrarect.move(10, 0)
 
 
     # Compruebo si hay colisión
     if barrarect.colliderect(ballrect):
         speed[1] = -speed[1]
+        if ball_speed < 15:
+            ball_speed = ball_speed + 1
 
     # Muevo la pelota
-    ballrect = ballrect.move(speed)
+    ballrect = ballrect.move(speed[0]*ball_speed, speed[1]*ball_speed)
     # Compruebo si la pelota llega a los límites de la ventana
     if ballrect.left < 0 or ballrect.right > ventana.get_width():
         speed[0] = -speed[0]
