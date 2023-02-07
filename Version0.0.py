@@ -1,3 +1,8 @@
+texto = fuente
+        texto_rect = texto.get_rect()
+        texto_x = ventana.get_width() / 2 - texto_rect.width / 2
+        texto_y = ventana.get_height() / 2 - texto_rect.height / 2
+        ventana.blit(texto, [texto_x, texto_y])
 import pygame
 
 # Inicialización de Pygame

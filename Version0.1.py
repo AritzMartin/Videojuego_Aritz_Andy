@@ -11,6 +11,9 @@ reloj = pygame.time.Clock()
 fondo = pygame.image.load("Fondo.png").convert()
 y = 0
 
+#GAME OVER
+fuente = pygame.image.load("game over.png")
+
 #Icono y Título
 pygame.display.set_caption("Aritz & Andy's GAME")
 icono = pygame.image.load("Icono.png")
@@ -23,8 +26,8 @@ alto = 40
 imag_redimensionada = pygame.transform.scale(ball, (ancho, alto))
 # Obtengo el rectángulo del objeto anterior
 ballrect = imag_redimensionada.get_rect()
-# Inicializo los valores con los que se van a mover la pelota
-speed = [1, -1]  
+# Inicializo los valores con los que se van a mover la pelota y su velocidad
+speed = [1, -1]
 ball_speed = 5
 # Pongo la pelota en el origen de coordenadas
 ballrect.move_ip(0,0)
@@ -40,8 +43,9 @@ jugando = True
 while jugando:
     # Comprobamos los eventos
     # Comprobamos si se ha pulsado el botón de cierre de la ventana
+    keys = pygame.key.get_pressed()
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT or keys[pygame.K_SPACE]:
             jugando = False
     #Movimiento del fondo de pantalla
     y_relativa = y % fondo.get_rect().height
@@ -52,14 +56,13 @@ while jugando:
     reloj.tick(FPS)
 
     # Compruebo si se ha pulsado alguna tecla y le marco los bordes de la pantalla:
-    keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT] and barrarect.left > 0:
         barrarect = barrarect.move(-10, 0)
     if keys[pygame.K_RIGHT] and barrarect.right < ventana.get_width():
         barrarect = barrarect.move(10, 0)
 
 
-    # Compruebo si hay colisión
+    # Compruebo si hay colisión y aumento gradualmente la velocidad
     if barrarect.colliderect(ballrect):
         speed[1] = -speed[1]
         if ball_speed < 15:
@@ -72,7 +75,8 @@ while jugando:
         speed[0] = -speed[0]
     if ballrect.top < 0 or ballrect.bottom > ventana.get_height():
         speed[1] = -speed[1]
-
+    if ballrect.bottom > ventana.get_height():
+        ventana.blit(fuente, (0, 0))
     # Se pinta la ventana con un color
     # Esto borra los posibles elementos que teníamos anteriormente
 
