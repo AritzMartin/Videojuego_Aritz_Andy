@@ -13,7 +13,7 @@ fondo = pygame.image.load("Fondo.png").convert()
 y = 0
 
 
-#Icono y título
+#Icono
 pygame.display.set_caption("Icono")
 icono = pygame.image.load("Icono.png")
 pygame.display.set_icon(icono)
@@ -52,12 +52,13 @@ while jugando:
     y -= 1
     reloj.tick(FPS)
 
-    # Compruebo si se ha pulsado alguna tecla
+    # Compruebo si se ha pulsado alguna tecla y le marco los bordes de la pantalla:
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
+    if keys[pygame.K_LEFT] and barrarect.left > 0:
         barrarect = barrarect.move(-5, 0)
-    if keys[pygame.K_RIGHT]:
+    if keys[pygame.K_RIGHT] and barrarect.right < ventana.get_width():
         barrarect = barrarect.move(5, 0)
+
 
     # Compruebo si hay colisión
     if barrarect.colliderect(ballrect):
