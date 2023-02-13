@@ -1,6 +1,7 @@
 import time
 
 import pygame
+from Ladrillos import Ladrillo
 
 # Inicialización de Pygame
 pygame.init()
@@ -14,15 +15,13 @@ fondo = pygame.image.load("Fondo.png").convert()
 y = 0
 
 #GAME OVER
-game_over = False
-#Letras del GAME OVER
-fuente = pygame.font.Font(None, 160)
+fuente = pygame.font.Font(None, 150)
 texto = fuente.render("Game Over", True, (125, 125, 125))
 texto_rect = texto.get_rect()
 texto_x = ventana.get_width() / 2 - texto_rect.width / 2
 texto_y = ventana.get_height() / 2.5 - texto_rect.height / 2.5
-
-fuente2 = pygame.font.Font(None, 60)
+#Como parar el juego una vez que salga el GAME OVER
+fuente2 = pygame.font.Font(None, 50)
 texto2 = fuente2.render("Pulsa ESPACIO para salir", True, (125,125,125))
 texto2_rect = texto2.get_rect()
 texto2_x = ventana.get_width() / 2 - texto2_rect.width / 2
@@ -74,7 +73,6 @@ while jugando:
         barrarect = barrarect.move(-10, 0)
     if keys[pygame.K_RIGHT] and barrarect.right < ventana.get_width():
         barrarect = barrarect.move(10, 0)
-
 
     # Compruebo si hay colisión y aumento gradualmente la velocidad
     if barrarect.colliderect(ballrect):

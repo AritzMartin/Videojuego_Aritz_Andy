@@ -76,3 +76,28 @@ while jugando:
     pygame.time.Clock().tick(60)
 
 pygame.quit()
+
+#Creación de Ladrillos
+listas_sprites = pygame.sprite.Group()
+bloques = pygame.sprite.Group()
+for i in range(7):
+    ladrillo = Ladrillo((255,255,0), 80, 30)
+    ladrillo.rect.x = 60 * i * 100
+    ladrillo.rect.y = 60
+    listas_sprites.add(ladrillo)
+    bloques.add(ladrillo)
+for i in range(7):
+    ladrillo = Ladrillo((255,255,0), 80, 30)
+    ladrillo.rect.x = 60 * i * 100
+    ladrillo.rect.y = 100
+    listas_sprites.add(ladrillo)
+    bloques.add(ladrillo)
+for i in range(7):
+    ladrillo = Ladrillo((255,255,0), 80, 30)
+    ladrillo.rect.x = 60 * i * 100
+    ladrillo.rect.y = 140
+    listas_sprites.add(ladrillo)
+    bloques.add(ladrillo)
+
+    #Dibujo el bloque
+    ventana.blit(bloques, listas_sprites)
