@@ -1,3 +1,5 @@
+import time
+
 import pygame
 
 # Inicialización de Pygame
@@ -12,7 +14,19 @@ fondo = pygame.image.load("Fondo.png").convert()
 y = 0
 
 #GAME OVER
-fuente = pygame.image.load("game over.png")
+game_over = False
+#Letras del GAME OVER
+fuente = pygame.font.Font(None, 160)
+texto = fuente.render("Game Over", True, (125, 125, 125))
+texto_rect = texto.get_rect()
+texto_x = ventana.get_width() / 2 - texto_rect.width / 2
+texto_y = ventana.get_height() / 2.5 - texto_rect.height / 2.5
+
+fuente2 = pygame.font.Font(None, 60)
+texto2 = fuente2.render("Pulsa ESPACIO para salir", True, (125,125,125))
+texto2_rect = texto2.get_rect()
+texto2_x = ventana.get_width() / 2 - texto2_rect.width / 2
+texto2_y = ventana.get_height() / 1.5 - texto2_rect.height / 1.5
 
 #Icono y Título
 pygame.display.set_caption("Aritz & Andy's GAME")
@@ -73,21 +87,23 @@ while jugando:
     # Compruebo si la pelota llega a los límites de la ventana
     if ballrect.left < 0 or ballrect.right > ventana.get_width():
         speed[0] = -speed[0]
-    if ballrect.top < 0 or ballrect.bottom > ventana.get_height():
+    if ballrect.top < 0:
         speed[1] = -speed[1]
-    if ballrect.bottom > ventana.get_height():
-        ventana.blit(fuente, (0, 0))
+
     # Se pinta la ventana con un color
     # Esto borra los posibles elementos que teníamos anteriormente
-
 
     # Dibujo la pelota
     ventana.blit(imag_redimensionada, ballrect)
     # Dibujo el bate
     ventana.blit(barra, barrarect)
     # Todos los elementos del juego se vuelven a dibujar
+    if ballrect.bottom > ventana.get_height():
+        ventana.blit(texto, [texto_x, texto_y])
+        ventana.blit(texto2, [texto2_x, texto2_y])
     pygame.display.flip()
     # Controlamos la frecuencia de refresco (FPS)
+
     pygame.time.Clock().tick(60)
 
 pygame.quit()
