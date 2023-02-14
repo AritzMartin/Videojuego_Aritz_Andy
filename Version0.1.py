@@ -51,6 +51,12 @@ barrarect = barra.get_rect()
 # Pongo el bate en la parte inferior de la pantalla
 barrarect.move_ip(240, 450)
 
+#Ladrillos
+lista_tableros = []
+for alto in range(4):
+    for ancho in range(10):
+            lista_tableros.append(Ladrillo(ancho, alto))
+
 # Bucle principal del juego
 jugando = True
 while jugando:
@@ -95,13 +101,18 @@ while jugando:
     ventana.blit(imag_redimensionada, ballrect)
     # Dibujo el bate
     ventana.blit(barra, barrarect)
+    # Dibujo ladrillo
+    for tablero in lista_tableros:
+        pygame.draw.rect(ventana, tablero.color, (tablero.ancho * 60, tablero.alto * 10 + 35, 59, 9))
+
     # Todos los elementos del juego se vuelven a dibujar
     if ballrect.bottom > ventana.get_height():
         ventana.blit(texto, [texto_x, texto_y])
         ventana.blit(texto2, [texto2_x, texto2_y])
     pygame.display.flip()
     # Controlamos la frecuencia de refresco (FPS)
-
     pygame.time.Clock().tick(60)
+
+
 
 pygame.quit()

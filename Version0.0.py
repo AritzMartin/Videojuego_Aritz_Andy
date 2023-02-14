@@ -101,3 +101,14 @@ for i in range(7):
 
     #Dibujo el bloque
     ventana.blit(bloques, listas_sprites)
+
+ if imag_redimensionada.get_height() < 3*10+35+9:
+        for altura in range(4):
+            for anchura in range(10):
+                if tablero.tablero[altura][anchura] != 0:
+                    if ((anchura * 60 < imag_redimensionada.get_width() < anchura*60 + 59)
+                           or (anchura*60 < imag_redimensionada.get_width() + 10 < anchura*60 +59)) and (
+                            (altura*10 +35 < imag_redimensionada.get_height() < altura*10 + 35 + 9) or
+                            (altura*10 +35 < imag_redimensionada.get_height()+10 < altura*10 + 35 + 9)):
+                        tablero.tablero[altura][anchura] = 0
+                        imag_redimensionada. *= -1
