@@ -2,10 +2,10 @@ import pygame
 
 class Ladrillo():
     def __init__(self, ancho, alto):
-        self.tablero = [[4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-                        [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-                        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-                        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+        self.tablero = [[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+                        [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+                        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+                        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
         self.ancho=ancho
         self.alto = alto
         if self.tablero[alto][ancho] != 0:

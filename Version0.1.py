@@ -54,7 +54,7 @@ barrarect.move_ip(240, 450)
 #Ladrillos
 lista_tableros = []
 for alto in range(4):
-    for ancho in range(10):
+    for ancho in range(11):
             lista_tableros.append(Ladrillo(ancho, alto))
 
 # Bucle principal del juego
